@@ -30,7 +30,7 @@ git remote add academy git@github.com:htmlacademy-javascript/406753-code-and-mag
 Когда вы обновили `master`, создайте ветку для нового задания:
 
 ```
-git checkout -b module2-task1
+git checkout -b module1-task1
 ```
 
 `module2-task1` — это название ветки. Под описанием каждого задания в интерфейсе интенсива для вас будет указано правильное название ветки.
