@@ -10,10 +10,14 @@ var coatColors = ['rgb(101, 137, 164)',
                   'rgb(0, 0, 0)'];
 var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
 
+var randomQuality = function (array) {
+    return parseInt( Math.random() * array.length );
+}
+
 var getPersonName = function ( names, surnames ) {
 
-    var randomName = names[ parseInt( Math.random() * names.length)];
-    var randomSurname = surnames[ parseInt( Math.random() * surnames.length ) ];
+    var randomName = names[ randomQuality( names ) ];
+    var randomSurname = surnames[ randomQuality( surnames ) ];
     
     if( Math.random() > 0.5 ) {
         var namePerson = randomName + " " + randomSurname;
@@ -24,21 +28,19 @@ var getPersonName = function ( names, surnames ) {
 }
 
 var getCoatColor = function ( coatColors ) {
-    var coatColorPerson = coatColors[ parseInt( Math.random() * coatColors.length) ];
+    var coatColorPerson = coatColors[ randomQuality( coatColors ) ];
     return coatColorPerson;
 }
 
 var getEyesColor = function (eyesColor) {
-    var eyesColorPerson = eyesColor[ parseInt( Math.random() * eyesColor.length) ];
+    var eyesColorPerson = eyesColor[ randomQuality( eyesColor ) ];
     return eyesColorPerson;
 }
-
-
 
 var Persons = [];
 
 for ( var i = 4; i > 0; i-- ) {
-    var someNameAndSurname =  getPersonName(names, surnames);
+    var someNameAndSurname =  getPersonName( names, surnames );
     var someCoat =  getCoatColor( coatColors );
     var someEyesColor =  getEyesColor( eyesColor );
 
@@ -47,15 +49,18 @@ for ( var i = 4; i > 0; i-- ) {
         coatColor: someCoat,
         eyesColor: someEyesColor
      } )
-}
+  }
 
-console.log(Persons);
-
+ console.log( Persons );
 // console.log(someEyesColor);
 // console.log(someCoat);
 // console.log(some);
 /*var persons = [];
  
+    //var randomName = names[ parseInt( Math.random() * names.length)];
+    //var randomSurname = surnames[ parseInt( Math.random() * surnames.length ) ];
+    var coatColorPerson = coatColors[ parseInt( Math.random() * coatColors.length) ];
+    var eyesColorPerson = eyesColor[ parseInt( Math.random() * eyesColor.length) ];
 var somePerson = {
   
   
