@@ -20,17 +20,20 @@ var getBestResult = function (times) {
 };
 
 var maxResult = getBestResult(times);
-/*console.log(maxResult);
+console.log(maxResult);
+
 var times = [20, 200, 2200, 202000, 220000, 34, 34567546765, 99999999999];
 
 var getBestResult = function (times) {
-   times.reduce( function( bestResult, currentItem, index, arr ) {
-        return Math.max( bestResult, currentItem );
-  });
-};   //  не понимаю почему возращает undefained хотя при отладке все норм
+   times.reduce( function( bestResult, currentItem, index, array) {
+          console.log('Текущий лучший результат ' + bestResult);
+          console.log('Текущий item массива ' + array[index]);
+          return bestResult;
+  }, 0);
+};
 
 var maxResult = getBestResult(times);
-
+console.log('Что вернула функция с reduce ' + maxResult);
 
 var getBestResult = function (times) {
   return Math.max.apply(null, times);
@@ -41,7 +44,9 @@ var getBestResult = function (times) {
     return b-a;
   });
   return Math.round(times[0]);
-}; */
+};
+
+/**/
 
 // Поучаем цвет колонок других игроков
 
