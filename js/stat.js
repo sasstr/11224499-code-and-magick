@@ -6,7 +6,7 @@ var CLOUD_COORDINATE_X = 100;
 var CLOUD_COORDINATE_Y = 10;
 var CLOUD_WIDTH = 420;
 var CLOUD_HEIGHT = 270;
-var FIRST_LINE_TEXT = 'Вы победили!';
+var FIRST_LINE_TEXT = 'Ура вы победили!';
 var SECOND_LINE_TEXT = 'Список результатов';
 var FONT = '16px PT Mono';
 var BAR_GRAPH_HEIGHT =  150;
@@ -31,28 +31,34 @@ var getBarStartCoordinateY = function (heightDifference) {
   return (100 + heightDifference);
 };
 
-// Поучаем цвет колонок других игроков
+// Поучаем цвет гистограмы других игроков или своей.
 var getPlayerBarColor = function (name) {
-  var PlayerColorSaturation = 'hsla(235, 100%, '+ Math.ceil(Math.random()*100) +'% , 1)';
-  return (name ==='Вы') ? BAR_MY_COLOR : PlayerColorSaturation;
+  return (name ==='Вы') ? BAR_MY_COLOR : 'hsla(235, 100%, '+ Math.ceil(Math.random() * 100) +'% , 1)';
 };
 
 var renderStatistics = function (ctx, names, times) {
+    // Функция рисует гистограмы игроков их имена и результаты
   var drawPlayerBar = function(playerHeightBar) {
+
     var nextCoordinateX = 155;
     var heightDifference = BAR_GRAPH_HEIGHT;
+
     for (var i = 0; i < playerHeightBar.length; i++) {
       heightDifference -= playerHeightBar[i];
       var nextCoordinateY = getBarStartCoordinateY(heightDifference);
 
       ctx.fillStyle = getPlayerBarColor(names[i]);
       ctx.fillRect(nextCoordinateX, nextCoordinateY, BAR_GRAPH_WIDTH, playerHeightBar[i]);
+
+      ctx.font = FONT;
+      ctx.textBaseline = "hanging";
+      ctx.strokeText(Math.round(times[i]), nextCoordinateX, (nextCoordinateY-20));
+      ctx.strokeText(names[i], nextCoordinateX, 260);
+
       nextCoordinateX += 90;
       heightDifference = BAR_GRAPH_HEIGHT;
     }
-};
-
-
+  };
 
   if (ctx){
     ctx.fillStyle = SHADOW_COLOR;
@@ -63,44 +69,12 @@ var renderStatistics = function (ctx, names, times) {
 
     ctx.font = FONT;
     ctx.textBaseline = "hanging";
-    ctx.strokeText(FIRST_LINE_TEXT, (CLOUD_WIDTH / 3), (CLOUD_HEIGHT / 6) );
-    ctx.strokeText(SECOND_LINE_TEXT, (CLOUD_WIDTH / 3), (CLOUD_HEIGHT / 4));
+    ctx.strokeText(FIRST_LINE_TEXT, 140, 40 );
+    ctx.strokeText(SECOND_LINE_TEXT, 140, 60);
+
     drawPlayerBar(playerHeightBar);
   }
   else {
     // Ваш браузер не поддерживает тег CANVAS установите другой браузер.
   }
 };
-
-/*
-ctx.strokeText("Hello world", 10, 50);
-renderStatistics(ctx, NAMES, times);
- fillRect(x, y, width, height)
-Рисование заполненного прямоугольника.
-strokeRect(x, y, width, height)
-Рисование прямоугольного контура.
-fillText(text, x, y [, maxWidth])
-Вставляет заданный текст в положении (x,y).
-Опционально может быть указана максимальная ширина.
-strokeText(text, x, y [, maxWidth])
-Вставляет контур заданного текста в положении (x,y).
-Опционально может быть указана максимальная ширина.
-*/
-/*console.log(item);
-console.log(playerHeightBar);
-var getBestResult = function (times) {
-  times.slice().sort(function (a, b){
-    return b-a;
-  });
-  return Math.round(times[0]);
-};
-var getBestResult = function (times) {
-   times.reduce( function( bestResult, currentItem, index, array) {
-          return bestResult;
-  }, 0);
-};
-//console.log('Текущий лучший результат ' + bestResult);
-          //console.log('Текущий item массива ' + array[index]);
-var maxResult = getBestResult(times);
-//console.log('Что вернула функция с reduce ' + maxResult);
-*/
