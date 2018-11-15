@@ -60,6 +60,7 @@ var renderWizard = function (randomWizards) {
   return wizardElement;
 };
 
+var createSimilarList = function (randomWizards) {
 var fragment = document.createDocumentFragment();
 
 for (var j = 0; j < randomWizards.length ; j++) {
@@ -67,6 +68,10 @@ for (var j = 0; j < randomWizards.length ; j++) {
 }
 
 setupSimilarList.appendChild(fragment);
+};
+
+createSimilarList(randomWizards);
+
 document.querySelector('.setup-similar').classList.remove('hidden');
 
 
