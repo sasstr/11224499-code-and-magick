@@ -34,7 +34,7 @@ var getBarStartCoordinateY = function (heightDifference) {
 
 // Поучаем цвет гистограмы других игроков или своей.
 var getPlayerBarColor = function (name) {
-  return (name ==='Вы') ? BAR_MY_COLOR : 'hsla(235, 100%, '+ Math.ceil(Math.random() * 100) +'% , 1)';
+  return (name ==='Вы') ? BAR_MY_COLOR : 'hsla(235, 100%, '+ Math.random() * 100 +'% , 1)';
 };
 
 var renderStatistics = function (ctx, names, times) {
