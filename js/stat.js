@@ -13,6 +13,7 @@ var BAR_GRAPH_HEIGHT =  150;
 var BAR_GRAPH_WIDTH = 40;
 var BAR_MY_COLOR = 'rgba(255, 0, 0, 1)';
 var BAR_GAP = 50;
+var GAP = 10;
 var times = [1200, 6500, 3200, 7000];
 
 // Функция которая возращает лучший результат игры
@@ -52,17 +53,16 @@ var renderStatistics = function (ctx, names, times) {
 
       ctx.font = FONT;
       ctx.textBaseline = "hanging";
-      ctx.strokeText(Math.round(times[i]), nextCoordinateX, (nextCoordinateY-20));
+      ctx.strokeText(Math.round(times[i]), nextCoordinateX, (nextCoordinateY-GAP * 2));
       ctx.strokeText(names[i], nextCoordinateX, 260);
 
-      nextCoordinateX += 90;
+      nextCoordinateX += GAP * 9;
       heightDifference = BAR_GRAPH_HEIGHT;
     }
   };
 
-  if (ctx){
     ctx.fillStyle = SHADOW_COLOR;
-    ctx.fillRect(CLOUD_COORDINATE_X+10, CLOUD_COORDINATE_Y+10, CLOUD_WIDTH, CLOUD_HEIGHT);
+    ctx.fillRect(CLOUD_COORDINATE_X+GAP, CLOUD_COORDINATE_Y+GAP, CLOUD_WIDTH, CLOUD_HEIGHT);
 
     ctx.fillStyle = BACKGROUND_COLOR;
     ctx.fillRect(CLOUD_COORDINATE_X, CLOUD_COORDINATE_Y, CLOUD_WIDTH, CLOUD_HEIGHT);
@@ -73,8 +73,4 @@ var renderStatistics = function (ctx, names, times) {
     ctx.strokeText(SECOND_LINE_TEXT, 140, 60);
 
     drawPlayerBar(playerHeightBar);
-  }
-  else {
-    // Ваш браузер не поддерживает тег CANVAS установите другой браузер.
-  }
 };
